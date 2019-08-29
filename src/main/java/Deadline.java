@@ -11,4 +11,9 @@ public class Deadline extends Task{
     public String toString(){
         return "[D]" + super.toString() + description + "(by: " + by + ")";
     }
+
+    @Override
+    public String Save(){
+        return String.format("D|%s|%s",super.Save(),by);
+    }
 }

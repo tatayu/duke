@@ -12,4 +12,9 @@ public class Event extends Task {
         return "[E]" + super.toString() + description + "(at: " + by + ")";
     }
 
+    @Override
+    public String Save(){
+         return String.format("E|%s|%s",super.Save(),by);
+    }
+
 }

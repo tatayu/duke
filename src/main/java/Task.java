@@ -1,6 +1,7 @@
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected int Done = 0;
 
     public Task(String description){
         this.description = description;
@@ -13,10 +14,14 @@ public class Task {
 
     public void markAsDone(){
         isDone = true;
-        getStatusIcon();
+        Done = 1;
     }
 
     public String toString(){
         return (getStatusIcon());
+    }
+
+    public String Save(){
+        return String.format("%d|%s",Done,description);
     }
 }

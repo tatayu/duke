@@ -1,3 +1,4 @@
+import javax.print.DocFlavor;
 import java.util.EmptyStackException;
 import java.util.Scanner;
 public class Duke {
@@ -11,6 +12,40 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         CheckString CheckStringObject = new CheckString();
         DukeException DukeExceptionObject = new DukeException();
+        WriteFile WriteFileObject = new WriteFile();
+        ReadFile ReadFileObject = new ReadFile();
+
+        try {
+            ReadFileObject.openFile();
+            String SaveCount = ReadFileObject.readFile();
+            count = Integer.parseInt(SaveCount) + 1;
+        }
+        catch (Exception e){
+            DukeExceptionObject.EmptyFileException();
+        }
+
+        for(int i=1; i<count; i++){
+            String temp = ReadFileObject.readFile();
+            CheckStringObject.ReadSplit(temp);
+            if(CheckStringObject.data0().equals("T")){
+                if(CheckStringObject.data1().equals("1")){
+                    taskObject[i].markAsDone();
+                }
+                taskObject[i] = new Todo(CheckStringObject.data2());
+            }
+            else if(CheckStringObject.data0().equals("D")){
+                if(CheckStringObject.data1().equals("1")){
+                    taskObject[i].markAsDone();
+                }
+                taskObject[i] = new Deadline(CheckStringObject.data2(), CheckStringObject.data3());
+            }
+            else if(CheckStringObject.data0().equals("E")){
+                if(CheckStringObject.data1().equals("1")){
+                    taskObject[i].markAsDone();
+                }
+                taskObject[i] = new Event(CheckStringObject.data2(), CheckStringObject.data3());
+            }
+        }
 
         while(true){
             flag = true;
@@ -35,10 +70,8 @@ public class Duke {
             }
             else if(TaskNum == -1 ){ //todo
                 try{
-                    int position = CheckStringObject.position(command); //find the position of "/"
-                    String desc = command.substring(5, position); //get the description
-                    String by = command.substring(position+1, command.length()); //get the timeline
-                    taskObject[count] = new Todo(desc, by);
+                    String[] temp = command.split(" ",2);
+                    taskObject[count] = new Todo(temp[1]);
                 }
                 catch (Exception e){
                     DukeExceptionObject.EmptyDescriptionException(command);
@@ -93,5 +126,16 @@ public class Duke {
                 DukeExceptionObject.DontKnowWhatItMeansException();
             }
         }
+
+        WriteFileObject.openFile();
+        String counter = Integer.toString(count - 1);
+        WriteFileObject.addRecords(counter);
+
+        for(int j=1; j<count; j++){
+            String temp = taskObject[j].Save();
+            WriteFileObject.addRecords(temp);
+        }
+        WriteFileObject.closeWrite();
+
     }
 }

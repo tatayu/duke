@@ -7,4 +7,8 @@ public class DukeException {
     public void DontKnowWhatItMeansException(){
         System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
+
+    public void EmptyFileException(){
+        System.out.println("Your file is empty");
+    }
 }
