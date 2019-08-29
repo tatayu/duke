@@ -15,7 +15,8 @@ public class Task {
         isDone = true;
         getStatusIcon();
     }
-    public void printTask(){
-        System.out.println(getStatusIcon()+description);
+
+    public String toString(){
+        return (getStatusIcon());
     }
 }
