@@ -9,7 +9,7 @@ public class Event extends Task {
 
     @Override
     public String toString(){
-        return "[E]" + super.toString() + description + "(by: " + by + ")";
+        return "[E]" + super.toString() + description + "(at: " + by + ")";
     }
 
 }

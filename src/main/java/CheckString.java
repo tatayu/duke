@@ -25,6 +25,9 @@ public class CheckString {
         else if (check[0].equals("event")){
             index = -3;
         }
+        else {
+            index = -4;
+        }
         return index;
     }
 

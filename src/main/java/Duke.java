@@ -1,3 +1,4 @@
+import java.util.EmptyStackException;
 import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
@@ -6,10 +7,13 @@ public class Duke {
         Task[] taskObject= new Task[101];
 
         int count = 1;
+        boolean flag = true;
         Scanner input = new Scanner(System.in);
         CheckString CheckStringObject = new CheckString();
+        DukeException DukeExceptionObject = new DukeException();
 
         while(true){
+            flag = true;
             String command = input.nextLine();
             int TaskNum = CheckStringObject.split(command);
 
@@ -29,39 +33,65 @@ public class Duke {
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println(taskObject[TaskNum].toString());
             }
+            else if(TaskNum == -1 ){ //todo
+                try{
+                    int position = CheckStringObject.position(command); //find the position of "/"
+                    String desc = command.substring(5, position); //get the description
+                    String by = command.substring(position+1, command.length()); //get the timeline
+                    taskObject[count] = new Todo(desc, by);
+                }
+                catch (Exception e){
+                    DukeExceptionObject.EmptyDescriptionException(command);
+                    flag = false;
+                }
 
-            else if(TaskNum == -1){ //todo
-                int position = CheckStringObject.position(command);
-                String desc = command.substring(5, position);
-                String by = command.substring(position+1, command.length());
-                taskObject[count] = new Todo(desc, by);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(taskObject[count].toString());
-                System.out.println("Now you have "+count+" tasks in the list.");
-                count ++;
+                if(flag == true) {
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(taskObject[count].toString());
+                    System.out.println("Now you have " + count + " tasks in the list.");
+                    count++;
+                }
             }
             else if(TaskNum == -2){//deadline
-                int position = CheckStringObject.position(command);
-                String desc = command.substring(9, position);
-                String by = command.substring(position+1, command.length());
-                taskObject[count] = new Deadline(desc, by); //put params
-                System.out.println("Got it. I've added this task:");
-                System.out.println(taskObject[count].toString());
-                System.out.println("Now you have "+count+" tasks in the list.");
-                count ++;
+                try{
+                    int position = CheckStringObject.position(command);
+                    String desc = command.substring(9, position);
+                    String by = command.substring(position+1, command.length());
+                    taskObject[count] = new Deadline(desc, by); //put params
+                }
+                catch (Exception e) {
+                    DukeExceptionObject.EmptyDescriptionException(command);
+                    flag = false;
+                }
 
+                if(flag == true) {
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(taskObject[count].toString());
+                    System.out.println("Now you have " + count + " tasks in the list.");
+                    count++;
+                }
             }
             else if(TaskNum == -3){//event
-                int position = CheckStringObject.position(command);
-                String desc = command.substring(6, position);
-                String by = command.substring(position+1, command.length());
-                taskObject[count] = new Event(desc, by);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(taskObject[count].toString());
-                System.out.println("Now you have "+count+" tasks in the list.");
-                count ++;
+                try{
+                    int position = CheckStringObject.position(command);
+                    String desc = command.substring(6, position);
+                    String by = command.substring(position+1, command.length());
+                    taskObject[count] = new Event(desc, by);
+                }
+                catch (Exception e){
+                    DukeExceptionObject.EmptyDescriptionException(command);
+                    flag = false;
+                }
+                if(flag == true){
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(taskObject[count].toString());
+                    System.out.println("Now you have "+count+" tasks in the list.");
+                    count ++;
+                }
+            }
+            else {
+                DukeExceptionObject.DontKnowWhatItMeansException();
             }
         }
     }
 }
-
