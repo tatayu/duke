@@ -14,6 +14,7 @@ public class Duke {
         DukeException DukeExceptionObject = new DukeException();
         WriteFile WriteFileObject = new WriteFile();
         ReadFile ReadFileObject = new ReadFile();
+        Date DateObject = new Date();
 
         try {
             ReadFileObject.openFile();
@@ -23,9 +24,10 @@ public class Duke {
         catch (Exception e){
             DukeExceptionObject.EmptyFileException();
         }
-
         for(int i=1; i<count; i++){
             String temp = ReadFileObject.readFile();
+            //System.out.println(temp);
+            //System.out.println(i);
             CheckStringObject.ReadSplit(temp);
             if(CheckStringObject.data0().equals("T")){
                 if(CheckStringObject.data1().equals("1")){
@@ -59,6 +61,7 @@ public class Duke {
             else if(command.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 1; i < count; i++) {
+                    //System.out.println(i);
                     System.out.print(i + ". ");
                     System.out.println(taskObject[i].toString());
                 }
@@ -91,6 +94,7 @@ public class Duke {
                     String desc = command.substring(9, position);
                     String by = command.substring(position+1, command.length());
                     taskObject[count] = new Deadline(desc, by); //put params
+                    //DateObject.StringtoDate(by);
                 }
                 catch (Exception e) {
                     DukeExceptionObject.EmptyDescriptionException(command);
@@ -110,6 +114,7 @@ public class Duke {
                     String desc = command.substring(6, position);
                     String by = command.substring(position+1, command.length());
                     taskObject[count] = new Event(desc, by);
+                    DateObject.StringtoDate(by);
                 }
                 catch (Exception e){
                     DukeExceptionObject.EmptyDescriptionException(command);

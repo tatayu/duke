@@ -14,7 +14,7 @@ public class ReadFile {
     }
 
     public String readFile(){
-            String a = x.next();
+            String a = x.nextLine();
         return a;
     }
 }
