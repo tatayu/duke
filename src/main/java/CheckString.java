@@ -10,7 +10,7 @@ public class CheckString {
     public int split(String UserInput){
         check = UserInput.split(" "); //split the string at the space
 
-        if(check[0].equals("done")) {
+        if(check[0].equals("done") || check[0].equals("delete")) {
             if (isNumeric(check[1])) {
                 index = Integer.parseInt(check[1]);
             }
@@ -24,6 +24,7 @@ public class CheckString {
         else if (check[0].equals("event")){
             index = -3;
         }
+
         else {
             index = -4;
         }
