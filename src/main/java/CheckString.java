@@ -24,9 +24,11 @@ public class CheckString {
         else if (check[0].equals("event")){
             index = -3;
         }
-
-        else {
+        else if(check[0].equals("find")){
             index = -4;
+        }
+        else {
+            index = -5;
         }
         return index;
     }

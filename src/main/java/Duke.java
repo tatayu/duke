@@ -19,13 +19,13 @@ public class Duke {
         ReadFile ReadFileObject = new ReadFile();
         Date DateObject = new Date();
         String[] instruction = new String[500];
-
+        String[] find = new String[500];
         //Read file
         try {
             ReadFileObject.openFile();
             String SaveCount = ReadFileObject.readFile();
             count = Integer.parseInt(SaveCount) + 1;
-            System.out.println(count);
+            //System.out.println(count);
         }
         catch (Exception e){
             DukeExceptionObject.EmptyFileException();
@@ -137,6 +137,17 @@ public class Duke {
                     System.out.println(taskObject.get(count-1).toString());
                     System.out.println("Now you have " + count + " tasks in the list.");
                     count++;
+                }
+            }
+            else if (TaskNum == -4){//find
+                find = command.split(" ",2);
+                System.out.println("Here are the matching tasks in your list:");
+                for(int i=0; i<count-1; i++){
+                    String temp = taskObject.get(i).description;
+                    if(temp.contains(find[1])){
+                        System.out.print(i + 1 + ". ");
+                        System.out.println(taskObject.get(i).toString());
+                    }
                 }
             }
             else {
