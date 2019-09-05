@@ -1,4 +1,4 @@
-public class CheckString {
+public class Parser {
     private int index;
     String[] check = new String[500];
     String[] ReadCheck = new String[100];
