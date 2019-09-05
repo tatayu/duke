@@ -32,8 +32,8 @@ public class Duke {
         }
         for(int i=0; i<count-1; i++){
             String temp = ReadFileObject.readFile();
-            System.out.println(temp);
-            System.out.println(i);
+//            System.out.println(temp);
+//            System.out.println(i);
             CheckStringObject.ReadSplit(temp);
 
             if(CheckStringObject.data0().equals("T")){
