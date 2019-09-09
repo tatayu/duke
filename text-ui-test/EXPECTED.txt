@@ -1,6 +1,5 @@
 Hello! I'm Duke
 What can I do for you?
-Your file is empty
 Got it. I've added this task:
 [T][N]tata
 Now you have 1 tasks in the list.
