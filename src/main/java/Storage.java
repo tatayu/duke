@@ -8,6 +8,9 @@ public class Storage {
     DukeException DukeExceptionObject = new DukeException();
     private int count = 1 ;
 
+    /**
+     * Load the task list stored in the file
+     */
     public void Load(){
         try {
             ReadFileObject.openFile();
@@ -43,6 +46,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Save the task added in the file
+     * @param count number of tasks stored in the file
+     */
     public void Save(int count){
         WriteFileObject.openFile();
         String counter = Integer.toString(count - 1);
@@ -55,15 +62,34 @@ public class Storage {
         WriteFileObject.closeWrite();
     }
 
+    /**
+     * Get the array list of taskObject from the file
+     * @return an array list of taskObject
+     */
     public ArrayList<Task> getTaskObject (){ //get from file
         return taskObject;
     }
+
+    /**
+     * Pass the array list of taskObject to the file
+     * @param taskObject an array list of taskObject
+     */
     public void setTaskObject(ArrayList<Task> taskObject) { //give to file
         this.taskObject = taskObject;
     }
+
+    /**
+     * Get the number of tasks from the file
+     * @return the number of tasks stored
+     */
     public int getCount(){ //get from file
         return count;
     }
+
+    /**
+     * Pass the number of tasks to the file
+     * @param count the number of tasks in list
+     */
     public void setCount(int count){ //give to file
         this.count = count;
     }

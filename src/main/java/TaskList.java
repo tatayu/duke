@@ -13,6 +13,9 @@ public class TaskList {
 
     Scanner input = new Scanner(System.in);
 
+    /**
+     * Process the user input according to the command
+     */
     public void run() {
         while (true) {
             flag = true;
@@ -84,15 +87,33 @@ public class TaskList {
         }
     }
 
+    /**
+     * Get data from file
+     */
     public ArrayList<Task> getTaskObject (){ //get from file
         return taskObject;
     }
+
+    /**
+     * pass the data to the file
+     * @param taskObject the array list that stores all the taskObjects
+     */
     public void setTaskObject(ArrayList<Task> taskObject) { //give to file
         this.taskObject = taskObject;
     }
+
+    /**
+     * Get the number of tasks from the file
+     * @return the number of task stored in the file
+     */
     public int getCount(){ //get from file
         return count;
     }
+
+    /**
+     * Pass the number of tasks to the file
+     * @param count the number of tasks in the list
+     */
     public void setCount(int count){ //give to file
         this.count = count;
     }

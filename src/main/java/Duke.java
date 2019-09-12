@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
+    /**
+     * Main program of Duke
+     * @param args arguments
+     */
     public static void main(String[] args) {
 
         ArrayList<Task> taskObject = new ArrayList<>();
